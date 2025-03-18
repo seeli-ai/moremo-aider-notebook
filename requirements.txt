@@ -1,1 +1,10 @@
 python-dotenv
+marimo[sql]
+pandas
+altair
+altair_viewer
+aider-install
+sqlmodel
+polars
+yfinance
+ta
