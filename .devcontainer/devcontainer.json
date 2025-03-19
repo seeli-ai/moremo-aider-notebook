@@ -27,7 +27,10 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"humao.rest-client"
+				"mechatroner.rainbow-csv",
+				"github.copilot",
+				"marimo-team.vscode-marimo",
+				"yy0931.vscode-sqlite3-editor"
 			]
 		}
 	}
