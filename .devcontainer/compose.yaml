@@ -2,5 +2,13 @@ services:
   
   app:
     image: mcr.microsoft.com/devcontainers/python:1-3.12-bookworm
+
+    volumes:
+    - db:/workspaces/${localWorkspaceFolderBasename}/db
+    - data:/workspaces/${localWorkspaceFolderBasename}/data
     # Overrides default command so things don't shut down after the process ends.
     command: /bin/sh -c "while sleep 1000; do :; done"
+
+volumes:
+  db:
+  data:
