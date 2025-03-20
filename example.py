@@ -41,9 +41,9 @@ def _():
 
 
 @app.cell
-def _(engine, mo):
+def _(engine, mo, trade):
     df_gap = mo.sql(
-        """
+        f"""
         SELECT profit_original, gap_in_atr 
         FROM trade
         """,
