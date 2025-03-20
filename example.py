@@ -53,6 +53,23 @@ def _(engine, mo, trade):
 
 
 @app.cell
+def _(alt, df_gap):
+    def create_gap_scatter(df):
+        scatter = alt.Chart(df).mark_circle().encode(
+            x=alt.X('gap_in_atr:Q', title="Gap in ATR"),
+            y=alt.Y('profit_original:Q', title="Profit Original")
+        )
+        regression = scatter.transform_regression(
+            'gap_in_atr', 
+            'profit_original'
+        ).mark_line(color='red')
+        return (scatter + regression).interactive()
+
+    create_gap_scatter(df_gap)
+    return (create_gap_scatter,)
+
+
+@app.cell
 def _(engine, mo, trade):
     dftrades = mo.sql(
         f"""
