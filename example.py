@@ -70,6 +70,27 @@ def _(alt, df_gap):
 
 
 @app.cell
+def _(alt, df_gap):
+    def create_gap_barchart(df):
+        chart = alt.Chart(df).mark_bar().encode(
+            x=alt.X('gap_in_atr:Q', 
+                   bin=alt.Bin(maxbins=10), 
+                   title="Gap in ATR (Binned)"),
+            y=alt.Y('mean(profit_original):Q', 
+                   title="Average Profit"),
+            tooltip=[
+                alt.Tooltip('gap_in_atr:Q', title="Bin Start", bin='origin'),
+                alt.Tooltip('count()', title="Number of Records"),
+                alt.Tooltip('mean(profit_original):Q', title="Avg Profit", format='.2f')
+            ]
+        ).interactive()
+        return chart
+
+    create_gap_barchart(df_gap)
+    return (create_gap_barchart,)
+
+
+@app.cell
 def _(engine, mo, trade):
     dftrades = mo.sql(
         f"""
